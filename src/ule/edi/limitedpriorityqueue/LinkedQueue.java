@@ -30,11 +30,8 @@ public class LinkedQueue<T> implements QueueADT<T> {
 	@Override
 	public void enqueue(T element) {
 		// TODO Auto-generated method stub
-		if(element == null)
-		{
-			throw new NullPointerException();
-		}
-		else
+		
+		if (element != null)
 		{
 			Node<T> nuevo = new Node<T>(element);
 			
@@ -49,6 +46,10 @@ public class LinkedQueue<T> implements QueueADT<T> {
 				count++;
 			}
 			rear = nuevo;
+		}
+		else
+		{
+			throw new NullPointerException();
 		}
 		
 	}

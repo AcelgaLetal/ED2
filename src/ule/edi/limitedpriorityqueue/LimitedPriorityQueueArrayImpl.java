@@ -20,19 +20,22 @@ public class LimitedPriorityQueueArrayImpl<T> implements LimitedPriorityQueue<T>
 	  // Crear el arrayList, y añadir una cola por cada una de las prioridades (1..npriorities)
 	  // Si capacidad <=0 disparar la excepción: IllegalArgumentException
 	
-		if(capacity <= 0)
+		
+		if (capacity > 0)
+		{
+			this.capacity = capacity;
+			this.npriorities = npriorities;
+			
+			colas = new ArrayList<>(npriorities);
+			
+			for (int i = 0; i < npriorities; i++)
+			{
+				colas.add(new LinkedQueue<T>());
+			}
+		}
+		else
 		{
 			throw new IllegalArgumentException("Capacity cannot be zero");
-		}
-		
-		this.capacity = capacity;
-		this.npriorities = npriorities;
-		
-		colas = new ArrayList<>(npriorities);
-		
-		for (int i = 0; i < npriorities; i++)
-		{
-			colas.add(new LinkedQueue<T>());
 		}
 		
 	}

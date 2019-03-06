@@ -14,12 +14,42 @@ public class LimitedPriorityQueueArrayTests {
 	
 	public LimitedPriorityQueueArrayTests() {
 		
+		try
+		{
+			
+			Assert.assertEquals(pq3 = new LimitedPriorityQueueArrayImpl<String>(0, 10), null);
+			//Assert.fail();
+		}
+		catch(Exception e)
+		{
+			Assert.assertEquals("Capacity cannot be zero", e.getMessage());
+		}
+		
+		LimitedPriorityQueueArrayImpl<String> pq6;
+		pq6 = new LimitedPriorityQueueArrayImpl<String>(5, 10);
+		
+	    Assert.assertEquals(5, pq6.getCapacity());
+	    Assert.assertEquals(0, pq6.getSize());
+	    
+	    //pq3 = new LimitedPriorityQueueArrayImpl<String>(0, 10);
+	    //Assert.assertEquals("Capacity cannot be zero", e.getMessage());
+	    		
+		
+	}
+	@Test
+	public void testIsFull() throws Exception
+	{
+		LimitedPriorityQueueArrayImpl<String> pq6 = new LimitedPriorityQueueArrayImpl<String>(2, 2);
 
 	}
 	
 	@Before
 	public void testBefore() throws Exception{
 	    pq3 = new LimitedPriorityQueueArrayImpl<String>(3,2); // limitado a 3 elementos, las posibles prioridades son [1,2]
+		String num = null;
+	    pq3.enqueue(3, num);
+	    Assert.assertEquals(new NullPointerException(), pq3.enqueue(3, num));
+	    
 	    pq5 = new LimitedPriorityQueueArrayImpl<String>(5,3); // limitado a 5 elementos, las posibles prioridades son [1,2,3]
 
 	}
@@ -70,4 +100,6 @@ public class LimitedPriorityQueueArrayTests {
 	    Assert.assertEquals(pq3.toString(), "[( Priority:1 (Prior1_1, Prior1_2)), ( Priority:2 (Prior2_1))]");
 	  
 	}
+	
+	
 }
